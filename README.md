@@ -1,5 +1,9 @@
 # SPE summer resit project template
 
+## Project Overview
+
+Our project is a Simple Text Adventure Game (STAG) to be run on a server. The player will be given text prompts and must enter certain text inputs in order to progress through the game.
+
 ## Group Details
 
 Group Name: Functional
@@ -39,3 +43,6 @@ In a separate terminal, run the client using the following command:
 ./mvnw exec:java@client -Dexec.args="username"
 ```
 Where `username` is the the name of the player
+
+
+
