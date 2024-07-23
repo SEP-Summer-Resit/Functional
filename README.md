@@ -12,6 +12,15 @@ Deployment lab machine: it075753.wks.bris.ac.uk
 
 Group Team Channel: [Functional](https://teams.microsoft.com/l/channel/19%3A15b613f759a540f5a8e6c0999f825d5c%40thread.tacv2/Team%20Functional?groupId=929cf74e-332b-4f32-9b05-35403b3bb092&tenantId=b2e47f30-cd7d-4a4e-a5da-b18cf1a4151b&ngc=true)
 
+## Architecture Diagram
+![880352ea5f7d348e7e92c358b73d2ab](https://github.com/user-attachments/assets/d41acd4a-a1eb-462f-a2c0-103060a945bc)
+
+## Class Diagram
+
+![image](https://github.com/user-attachments/assets/0faa2df1-2cb4-4a0d-b51d-53714319ca10)
+
+
+
 ## Overview
 
 This template is the skeleton project that acts as the starting point for the SPE summer resit assignment.  
