@@ -17,7 +17,8 @@ Group Team Channel: [Functional](https://teams.microsoft.com/l/channel/19%3A15b6
 
 ## Class Diagram
 
-![image](https://github.com/user-attachments/assets/9c97d949-b928-4555-9ce9-9ae325b4e16e)
+![image](https://github.com/user-attachments/assets/0faa2df1-2cb4-4a0d-b51d-53714319ca10)
+
 
 
 ## Overview
