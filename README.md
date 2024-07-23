@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Our project is a Simple Text Adventure Game (STAG) to be run on a server. The player will be given text prompts and must enter certain text inputs in order to progress through the game.
+Our project is a Simple Text Adventure Game (STAG) to be run on a server. This server will run on a UoB machine and will restart every hour to recieve any updates. In the game, the player will be given text prompts and must enter specific text inputs in order to progress through the game. Valid inputs will cause the player to be given new prompts whereas invalid inputs will be met with an error message.
 
 ## Group Details
 
