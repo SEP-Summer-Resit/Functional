@@ -2,7 +2,6 @@ package edu.uob;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -20,7 +19,6 @@ public final class GameServer {
     }
 
     public String handleCommand(String incomming) {
-        String username = incomming.split(":")[0].trim();
         String command = incomming.split(":")[1].trim();
         String response = "";
         if (command.startsWith("look")) {
