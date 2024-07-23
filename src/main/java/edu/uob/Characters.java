@@ -9,6 +9,15 @@ package edu.uob;
  *
  * @author liumu
  */
-public class Charactors {
+public class Characters {
+    private String name;
+    private String description;
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
