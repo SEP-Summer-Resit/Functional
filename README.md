@@ -15,6 +15,11 @@ Group Team Channel: [Functional](https://teams.microsoft.com/l/channel/19%3A15b6
 ## Architecture Diagram
 ![880352ea5f7d348e7e92c358b73d2ab](https://github.com/user-attachments/assets/d41acd4a-a1eb-462f-a2c0-103060a945bc)
 
+## Class Diagram
+
+![image](https://github.com/user-attachments/assets/5c7d06ae-08ae-4c5d-98b1-563041c6e457)
+
+
 ## Overview
 
 This template is the skeleton project that acts as the starting point for the SPE summer resit assignment.  
