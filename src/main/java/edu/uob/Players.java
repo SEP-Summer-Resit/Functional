@@ -15,18 +15,18 @@ import java.util.List;
 public class Players {
     private String name;
     private String username; //
-    private List<Artefacts> inventory;
+    private List<Artefact> inventory;
 
     public Players(String name, String username) {
         this.name = name;
         this.username = username;
     }
 
-    public void pickup(Artefacts artefact) {
+    public void pickup(Artefact artefact) {
         inventory.add(artefact);
     }
 
-    public void drop(Artefacts artefact) {
+    public void drop(Artefact artefact) {
         inventory.remove(artefact);
     }
 
@@ -46,7 +46,7 @@ public class Players {
         this.username = username;
     }
 
-    public List<Artefacts> getInventory() {
+    public List<Artefact> getInventory() {
         return inventory;
     }
 }
