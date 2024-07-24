@@ -13,6 +13,8 @@ package edu.uob;
     private Location startLocation;
     private Location endLocation;
 
+    public Path(Location startLocation, Location endLocation) {}
+
     public Location getStart() {
         return startLocation;
     }

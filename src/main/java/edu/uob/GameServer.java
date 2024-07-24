@@ -18,8 +18,8 @@ public final class GameServer {
     public GameServer() {
     }
 
-    public String handleCommand(String incomming) {
-        String command = incomming.split(":")[1].trim();
+    public String handleCommand(String incoming) {
+        String command = incoming.split(":")[1].trim();
         String response = "";
         if (command.startsWith("look")) {
             response += "The location you are currently in is ???\n";

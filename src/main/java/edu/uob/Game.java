@@ -117,52 +117,7 @@ public class Game {
     }
 }
 
-class Player {
-    private Location location;
-    private final List<Artefact> inventory;
 
-    public Player(String name, Location location) {
-        this.location = location;
-        this.inventory = new ArrayList<>();
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public void addArtefact(Artefact artefact) {
-        inventory.add(artefact);
-    }
-
-    public Artefact removeArtefact(String artefactName) {
-        for (Artefact artefact : inventory) {
-            if (artefact.getName().equalsIgnoreCase(artefactName)) {
-                inventory.remove(artefact);
-                return artefact;
-            }
-        }
-        return null;
-    }
-
-    public String listArtefacts() {
-        if (inventory.isEmpty()) {
-            return "nothing";
-        }
-        StringBuilder sb = new StringBuilder();
-        for (Artefact artefact : inventory) {
-            sb.append(artefact.getName()).append(" ");
-        }
-        return sb.toString().trim();
-    }
-
-    public void clearInventory() {
-        inventory.clear();
-    }
-}
 
 
 
