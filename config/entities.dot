@@ -95,5 +95,3 @@ digraph layout {
         riverbank -> forest
         clearing -> riverbank
     }
-
-}
