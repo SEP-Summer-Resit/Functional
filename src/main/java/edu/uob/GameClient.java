@@ -1,7 +1,11 @@
 package edu.uob;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
 
 public class GameClient
 {
@@ -21,15 +25,15 @@ public class GameClient
             String incoming;
             System.out.print("\n" + playerName + ": ");
             String command = commandLine.readLine();
-            Socket socket = new Socket("127.0.0.1", 8888);
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out.write(playerName + ": " + command + "\n");
-            out.flush();
-            while((incoming = in.readLine()) != null) System.out.println(incoming);
-            in.close();
-            out.close();
-            socket.close();
+            try (Socket socket = new Socket("127.0.0.1", 8888)) {
+                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                out.write(playerName + ": " + command + "\n");
+                out.flush();
+                while((incoming = in.readLine()) != null) System.out.println(incoming);
+                in.close();
+                out.close();
+            }
         } catch(IOException ioe) {
             System.out.println(ioe);
         }
