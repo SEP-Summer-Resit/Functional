@@ -9,15 +9,10 @@ package edu.uob;
  *
  * @author liumu
  */
-public class Artefacts {
-    private String name;
-    private String description;
+public class Character extends Entity{
 
-    public String getName() {
-        return name;
+    public Character(String Name, String Description) {
+        super(Name, Description);
     }
 
-    public String getDescription() {
-        return description;
-    }
 }

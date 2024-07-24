@@ -32,7 +32,7 @@ public class Game {
         start.addPath("north", forest);
         forest.addPath("south", start);
 
-        Artefact sword = new Artefact("sword");
+        Artefact sword = new Artefact("sword", "sword");
         start.addArtefact(sword);
 
         locations.put("Start", start);
@@ -164,69 +164,6 @@ class Player {
     }
 }
 
-class Location {
-    private final String description;
-    private final List<Artefact> artefacts;
-    private final Map<String, Location> paths;
 
-    public Location(String name, String description) {
-        this.description = description;
-        this.artefacts = new ArrayList<>();
-        this.paths = new HashMap<>();
-    }
 
-    public void addPath(String direction, Location location) {
-        paths.put(direction, location);
-    }
 
-    public Location getPath(String direction) {
-        return paths.get(direction);
-    }
-
-    public void addArtefact(Artefact artefact) {
-        artefacts.add(artefact);
-    }
-
-    public Artefact removeArtefact(String artefactName) {
-        for (Artefact artefact : artefacts) {
-            if (artefact.getName().equalsIgnoreCase(artefactName)) {
-                artefacts.remove(artefact);
-                return artefact;
-            }
-        }
-        return null;
-    }
-
-    public String describe() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(description).append("\nArtefacts here: ");
-        if (artefacts.isEmpty()) {
-            sb.append("none");
-        } else {
-            for (Artefact artefact : artefacts) {
-                sb.append(artefact.getName()).append(" ");
-            }
-        }
-        sb.append("\nPaths: ");
-        if (paths.isEmpty()) {
-            sb.append("none");
-        } else {
-            for (String direction : paths.keySet()) {
-                sb.append(direction).append(" ");
-            }
-        }
-        return sb.toString().trim();
-    }
-}
-
-class Artefact {
-    private final String name;
-
-    public Artefact(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-}
