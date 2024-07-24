@@ -4,42 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="982102fa-73a6-4fe1-8970-ea71b5db38d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Artefacts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Characters.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Furniture.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Locations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Paths.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Players.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/edu/uob/Artefacts.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/edu/uob/Characters.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/edu/uob/Furniture.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/edu/uob/Locations.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/edu/uob/Paths.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/edu/uob/Players.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-edu.uob.CommandTests.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/surefire-reports/edu.uob.CommandTests.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/edu/uob/CommandTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/actions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/actions.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/entities.dot" beforeDir="false" afterPath="$PROJECT_DIR$/config/entities.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/com/alexmerz/graphviz/dot-parser/1.0/dot-parser-1.0.pom" beforeDir="false" afterPath="$PROJECT_DIR$/libs/com/alexmerz/graphviz/dot-parser/1.0/dot-parser-1.0.pom" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/com/alexmerz/graphviz/dot-parser/maven-metadata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libs/com/alexmerz/graphviz/dot-parser/maven-metadata.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/GameClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/GameClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/GameServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/GameClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/uob/GameClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/GameServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/uob/GameServer.class" afterDir="false" />
-    </list>
+    <list default="true" id="982102fa-73a6-4fe1-8970-ea71b5db38d1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,14 +30,20 @@
   "associatedIndex": 0
 }]]></component>
   <component name="ProjectId" id="2jgvqTtA6TMtqwOGXNCBuqYsbyO" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging main",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "features",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -113,11 +84,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1721821725827</updated>
-      <workItem from="1721821728144" duration="869000" />
+      <workItem from="1721821728144" duration="1217000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
