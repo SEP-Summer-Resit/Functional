@@ -54,7 +54,7 @@ final class CommandTests {
     Location testLoc1 = new Location("Location1", "Test location");
     Location testLoc2 = new Location("Location2", "Test location");
     Location testLoc3 = new Location("Location3", "Test location");
-    Path testPath = new Path(testLoc1, testLoc2);
+    testLoc1.createPath(testLoc2);
     Player testPlayer = new Player(testLoc1);
 
     // Valid input:

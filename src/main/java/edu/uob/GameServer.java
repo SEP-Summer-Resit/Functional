@@ -47,6 +47,7 @@ public final class GameServer {
         locations.add(forest);
     }
 
+    // Takes a string input and returns the location with that name. Returns null if no such location exists.
     private Location getLocationByName(String name){
         for (Location location : locations) {
             if(location.getName().equalsIgnoreCase(name)){

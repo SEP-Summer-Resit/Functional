@@ -77,7 +77,7 @@ class Location {
     }
 
     public void createPath(Location destination){
-        paths.add(new Path(this, destination));
+        paths.add(new Path(destination));
     }
 
 }
