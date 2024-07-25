@@ -18,16 +18,17 @@ import edu.uob.Character;
 
 public final class GameServer {
 
-    private GameGraph gameGraph;
-    private Player player;
-    private final AmbiguityRefusal ambiguityRefusal;
-    private final PartialMatcher partialMatcher;
-    private final DecorationFilter decorationFilter;
-    private final List<String> possibleActions;
+    private GameGraph gameGraph; // Game graph
+    private Player player; // Player
+    private final AmbiguityRefusal ambiguityRefusal; // Ambiguity handler
+    private final PartialMatcher partialMatcher; // Partial matcher
+    private final DecorationFilter decorationFilter; // Decoration filter
+    private final InvertedMatcher invertedMatcher; // Inverted matcher
+    private final List<String> possibleActions; // List of possible actions
 
     public static void main(String[] args) throws IOException, ParseException {
         GameServer server = new GameServer();
-        server.blockingListenOn(8888);
+        server.blockingListenOn(8888); // Listen on port 8888
     }
 
     public GameServer() throws FileNotFoundException, ParseException {
@@ -35,22 +36,25 @@ public final class GameServer {
         this.ambiguityRefusal = new AmbiguityRefusal();
         this.partialMatcher = new PartialMatcher();
         this.decorationFilter = new DecorationFilter();
-        this.possibleActions = Arrays.asList("look", "inv", "get", "drop", "goto", "reset");
-        // PLACEHOLDER - REPLACE locations.get(0) WITH STARTING LOCATION WHEN LOADCONFIG FULLY IMPLEMENTED
+        this.invertedMatcher = new InvertedMatcher();
+        this.possibleActions = Arrays.asList("look", "inv", "get", "drop", "goto", "reset", "find");
+        // Create player with initial location
         this.player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
     }
 
+    // Load configuration file
     private void loadConfig() throws FileNotFoundException, ParseException {
         String entityFile = "config" + File.separator + "entities.dot";
         this.gameGraph = EntitiesFileParser.parseGameGraph(entityFile);
     }
 
-    // Takes a string input and returns the location with that name. Returns null if no such location exists.
+    // Get location by name
     private Location getLocationByName(String name) {
         GameGraphNode node = this.gameGraph.getNode(name);
         return null != node ? node.getLocationEntity() : null;
     }
 
+    // Handle 'get' command
     private String get(String command) {
         String[] parts = command.split(" ", 2);
         if (parts.length < 2) {
@@ -65,6 +69,7 @@ public final class GameServer {
         return "No such artefact here. Are you sure you spelled it correctly?";
     }
 
+    // Handle 'drop' command
     private String drop(String command) {
         String[] parts = command.split(" ", 2);
         if (parts.length < 2) {
@@ -79,10 +84,12 @@ public final class GameServer {
         return "You don't have such an artefact. Double-check your inventory.";
     }
 
+    // Handle 'inventory' command
     private String inventory() {
         return "You are carrying: " + player.listArtefacts();
     }
 
+    // Handle 'goto' command
     private String gotoLocation(String command) {
         String[] parts = command.split(" ", 2);
         if (parts.length < 2) {
@@ -103,6 +110,7 @@ public final class GameServer {
         return "There is no path to the specified location. Try a different route.";
     }
 
+    // Handle 'look' command
     private String look() {
         StringBuilder response = new StringBuilder();
         // Location
@@ -151,21 +159,38 @@ public final class GameServer {
         return response.toString().trim();
     }
 
+    // Handle 'reset' command
     private String reset() throws FileNotFoundException, ParseException {
         loadConfig();
         player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
         return "Game has been reset. All your progress is lost, but a new adventure begins!";
     }
 
+    // Handle 'find' command using InvertedMatcher class
+    private String find(String command) {
+        String[] parts = command.split(" ", 2);
+        if (parts.length < 2) {
+            return "Please specify what you are looking for.";
+        }
+        String searchQuery = parts[1].trim();
+        List<String> matches = invertedMatcher.findMatches(searchQuery, possibleActions);
+        if (matches.isEmpty()) {
+            return "No actions found containing '" + searchQuery + "'.";
+        } else {
+            return invertedMatcher.handleAmbiguity(searchQuery, matches);
+        }
+    }
+
+    // Handle incoming commands
     public String handleCommand(String incoming) throws FileNotFoundException, ParseException {
         String command = incoming.split(":")[1].trim();
         if (command.isEmpty()) {
             return ambiguityRefusal.handleEmptyCommand();
         }
-        
+
         // Filter out decorative words from the command
         command = decorationFilter.filterDecorations(command);
-        
+
         String[] parts = command.split(" ", 2);
         String action = parts[0];
         List<String> matches = partialMatcher.findMatches(action, possibleActions);
@@ -173,7 +198,7 @@ public final class GameServer {
         if (matches.size() > 1) {
             return partialMatcher.handleAmbiguity(action, matches);
         } else if (matches.size() == 1) {
-            action = matches.get(0);  // Use the matched action
+            action = matches.get(0); // Use the matched action
         } else {
             String suggestion = partialMatcher.provideSuggestions(action, possibleActions);
             return ambiguityRefusal.handleUnknownCommand(command) + " " + suggestion;
@@ -192,6 +217,8 @@ public final class GameServer {
                 return get(command);
             case "drop":
                 return drop(command);
+            case "find":
+                return find(command);
             default:
                 return ambiguityRefusal.handleUnknownCommand(command);
         }
