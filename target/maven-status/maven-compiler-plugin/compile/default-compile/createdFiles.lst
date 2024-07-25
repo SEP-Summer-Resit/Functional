@@ -1,6 +1,5 @@
 edu\uob\Location.class
 edu\uob\Player.class
-edu\uob\Game.class
 edu\uob\Character.class
 edu\uob\Furniture.class
 edu\uob\GameServer.class

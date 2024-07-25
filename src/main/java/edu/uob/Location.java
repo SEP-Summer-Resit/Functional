@@ -16,18 +16,13 @@ import java.util.Map;
 
 class Location {
     private final String name;
-    private final String description;
     private List<Character> characters;
     private List<Furniture> furniture;
     private List<Artefact> artefacts;
-    private final Map<String, Location> paths;
+    private List<Path> paths;
 
     public String getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public List<Artefact> getArtefacts() {
@@ -42,27 +37,24 @@ class Location {
         return furniture;
     }
 
-    public Map<String, Location> getPaths() {
+    public List<Path> getPaths() {
         return paths;
     }
 
-    public Location(String Name, String description) {
+    public Location(String Name) {
         this.name = Name;
-        this.description = description;
         this.artefacts = new ArrayList<>();
-        this.paths = new HashMap<>();
+        this.paths = new ArrayList<>();
+        this.furniture = new ArrayList<>();
+        this.characters = new ArrayList<>();
     }
 
-    public void addPath(String direction, Location location) {
-        paths.put(direction, location);
-    }
+    public void addFurniture(Furniture furniture) { this.furniture.add(furniture); }
 
-    public Location getPath(String direction) {
-        return paths.get(direction);
-    }
+    public void addCharacter(Character character) { this.characters.add(character); }
 
     public void addArtefact(Artefact artefact) {
-        artefacts.add(artefact);
+        this.artefacts.add(artefact);
     }
 
     public Artefact removeArtefact(String artefactName) {
@@ -75,24 +67,17 @@ class Location {
         return null;
     }
 
-    public String describe() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(description).append("\nArtefacts here: ");
-        if (artefacts.isEmpty()) {
-            sb.append("none");
-        } else {
-            for (Artefact artefact : artefacts) {
-                sb.append(artefact.getName()).append(" ");
+    public boolean pathExists(Location destination) {
+        for (Path path : paths) {
+            if (path.getEnd().equals(destination)) {
+                return true;
             }
         }
-        sb.append("\nPaths: ");
-        if (paths.isEmpty()) {
-            sb.append("none");
-        } else {
-            for (String direction : paths.keySet()) {
-                sb.append(direction).append(" ");
-            }
-        }
-        return sb.toString().trim();
+        return false;
     }
+
+    public void createPath(Location destination){
+        paths.add(new Path(destination));
+    }
+
 }

@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99eb1e1d-74ce-4523-8ca0-c8cd3d27f715" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/Furniture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Furniture.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/GameServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Location.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/CommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CommandTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/Furniture.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/uob/Furniture.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/GameServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/uob/GameServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/uob/Location.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +36,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -45,20 +50,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#36 on tests&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/zicro/IdeaProjects/SEP/Functional&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "command-handler",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/zicro/IdeaProjects/SEP/Functional",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "terminal",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Functional" />
@@ -107,5 +113,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

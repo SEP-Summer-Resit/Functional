@@ -10,13 +10,10 @@ package edu.uob;
  * @author liumu
  */
  public class Path {
-    private Location startLocation;
-    private Location endLocation;
+    private final Location endLocation;
 
-    public Path(Location startLocation, Location endLocation) {}
-
-    public Location getStart() {
-        return startLocation;
+    public Path(Location endLocation) {
+        this.endLocation = endLocation;
     }
 
     public Location getEnd() {
