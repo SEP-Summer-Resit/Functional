@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 public final class GameServer {
-    private final Player player;
-    private final ArrayList<Location> locations;
+    private Player player;
+    private ArrayList<Location> locations;
 
     public static void main(String[] args) throws IOException {
         GameServer server = new GameServer();
@@ -57,7 +57,8 @@ public final class GameServer {
         return null;
     }
 
-    private String get(String artefactName) {
+    private String get(String command) {
+        String artefactName = command.split(" ")[1].trim();
         Artefact artefact = player.getLocation().removeArtefact(artefactName);
         if (artefact != null) {
             player.addArtefact(artefact);
@@ -66,7 +67,8 @@ public final class GameServer {
         return "No such artefact here";
     }
 
-    private String drop(String artefactName) {
+    private String drop(String command) {
+        String artefactName = command.split(" ")[1].trim();
         Artefact artefact = player.removeArtefact(artefactName);
         if (artefact != null) {
             player.getLocation().addArtefact(artefact);
@@ -125,10 +127,10 @@ public final class GameServer {
     }
 
     private String reset() {
+        locations = new ArrayList<>();
         loadConfig();
         // PLACEHOLDER - REPLACE locations.get(0) WITH STARTING LOCATION WHEN LOADCONFIG FULLY IMPLEMENTED
-        player.setLocation(locations.get(0));
-        player.clearInventory();
+        player = new Player(locations.get(0));
         return "Game has been reset";
     }
 
@@ -144,9 +146,15 @@ public final class GameServer {
         if (command.startsWith("goto")) {
             return gotoLocation(command);
         }
-        if (command.startsWith("reset")) {}
-        if (command.startsWith("get")) {}
-        if (command.startsWith("drop")) {}
+        if (command.startsWith("reset")) {
+            return reset();
+        }
+        if (command.startsWith("get")) {
+            return get(command);
+        }
+        if (command.startsWith("drop")) {
+            return drop(command);
+        }
         return "Command not recognised";
     }
 
