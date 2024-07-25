@@ -14,16 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class Location {
-    private final String name;
+class Location extends Entity {
     private List<Character> characters;
     private List<Furniture> furniture;
     private List<Artefact> artefacts;
     private List<Path> paths;
-
-    public String getName() {
-        return name;
-    }
 
     public List<Artefact> getArtefacts() {
         return artefacts;
@@ -41,8 +36,8 @@ class Location {
         return paths;
     }
 
-    public Location(String Name) {
-        this.name = Name;
+    public Location(String Name, String description) {
+        super(Name, description);
         this.artefacts = new ArrayList<>();
         this.paths = new ArrayList<>();
         this.furniture = new ArrayList<>();
