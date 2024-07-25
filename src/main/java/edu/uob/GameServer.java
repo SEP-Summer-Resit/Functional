@@ -22,7 +22,7 @@ public final class GameServer {
     }
 
     public GameServer() {
-        this.locations = new ArrayList<Location>();
+        this.locations = new ArrayList<>();
         loadConfig();
         // PLACEHOLDER - REPLACE locations.get(0) WITH STARTING LOCATION WHEN LOADCONFIG FULLY IMPLEMENTED
         this.player = new Player(locations.get(0));
@@ -36,6 +36,7 @@ public final class GameServer {
         // 简单示例：创建一些位置和物品
         Location start = new Location("Start", "This is the starting location.");
         Location forest = new Location("Forest", "This is a dark forest.");
+
         start.createPath(forest);
         forest.createPath(start);
 
@@ -44,6 +45,15 @@ public final class GameServer {
 
         locations.add(start);
         locations.add(forest);
+    }
+
+    private Location getLocationByName(String name){
+        for (Location location : locations) {
+            if(location.getName().equalsIgnoreCase(name)){
+                return location;
+            }
+        }
+        return null;
     }
 
     private String get(String artefactName) {
@@ -70,18 +80,16 @@ public final class GameServer {
 
     private String gotoLocation(String command) {
         String name = command.split(" ")[1];
-        List<Path> paths = player.getLocation().getPaths();
         // CAPITALISATION MATTERS
+        Location destination = getLocationByName(name);
         if (name.isEmpty()){
             return "No location provided";
         }
-        for (Path path : paths) {
-            if (name.equals(path.getEnd().getName())){
-                player.setLocation(path.getEnd());
-                return "You moved to " + name;
-            }
+        if (destination == null) {
+            return "No such location";
         }
-        return "No such location";
+        player.setLocation(destination);
+        return "You moved to" + destination.getName();
     }
 
     private String look() {

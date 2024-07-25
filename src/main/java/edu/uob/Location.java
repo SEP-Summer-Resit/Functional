@@ -67,6 +67,15 @@ class Location {
         return null;
     }
 
+    public boolean pathExists(Location destination) {
+        for (Path path : paths) {
+            if (path.getEnd().equals(destination)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void createPath(Location destination){
         paths.add(new Path(this, destination));
     }
