@@ -29,6 +29,15 @@ public final class GameServer {
     public static void main(String[] args) throws IOException, ParseException {
         GameServer server = new GameServer();
         server.blockingListenOn(8888); // Listen on port 8888
+
+        // Generate random commands for testing
+        VariabilityTestGenerator generator = new VariabilityTestGenerator();
+        for (int i = 0; i < 10; i++) {
+            String command = generator.generateCommand();
+            System.out.println("Generated command: " + command);
+            String response = server.handleCommand("Player: " + command);
+            System.out.println("Response: " + response);
+        }
     }
 
     public GameServer() throws FileNotFoundException, ParseException {
@@ -258,3 +267,4 @@ public final class GameServer {
         }
     }
 }
+
