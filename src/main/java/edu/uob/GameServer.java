@@ -9,8 +9,9 @@ import com.alexmerz.graphviz.*;
 import com.alexmerz.graphviz.objects.*;
 
 public final class GameServer {
+
+    private GameGraph gameGraph;
     private Player player;
-    private ArrayList<Location> locations;
 
     public static void main(String[] args) throws IOException, ParseException {
         GameServer server = new GameServer();
@@ -18,65 +19,22 @@ public final class GameServer {
     }
 
     public GameServer() throws FileNotFoundException, ParseException {
-        this.locations = new ArrayList<>();
         loadConfig();
         // PLACEHOLDER - REPLACE locations.get(0) WITH STARTING LOCATION WHEN LOADCONFIG FULLY IMPLEMENTED
-        this.player = new Player(locations.get(0));
+        this.player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
     }
 
     private void loadConfig() throws FileNotFoundException, ParseException {
-        Parser parser = new Parser();
-        String file = "config" + File.separator + "entities.dot";
-        FileReader reader = new FileReader(file);
-        parser.parse(reader);
-        Graph wholeDocument = parser.getGraphs().get(0);
-        ArrayList<Graph> configParts = wholeDocument.getSubgraphs();
-        ArrayList<Graph> configLocations = configParts.get(0).getSubgraphs();
-        ArrayList<Edge> configPaths = configParts.get(1).getEdges();
 
-        // LOCATIONS
-        for (Graph location : configLocations) {
-            // Make location
-            Location newLocation = new Location(location.getNodes(false).get(0).getId().getId());
-            // Populate location with entities
-            ArrayList<Graph> entities = location.getSubgraphs();
-            for (Graph entity : entities) {
-                if (entity.getId().getId().equals("artefacts")) {
-                    for (Node artefact : entity.getNodes(false)) {
-                        newLocation.addArtefact(new Artefact(artefact.getId().getId(), artefact.getAttribute("description")));
-                    }
-                }
-                if (entity.getId().getId().equals("furniture")) {
-                    for (Node furniture : entity.getNodes(false)) {
-                        newLocation.addFurniture(new Furniture(furniture.getId().getId(), furniture.getAttribute("description")));
-                    }
-                }
-                if (entity.getId().getId().equals("characters")) {
-                    for (Node character : entity.getNodes(false)) {
-                        newLocation.addCharacter(new Character(character.getId().getId(), character.getAttribute("description")));
-                    }
-                }
-            }
-            locations.add(newLocation);
-        }
-
-        // PATHS
-        for (Edge edge : configPaths) {
-            String start = edge.getSource().getNode().getId().getId();
-            String end = edge.getTarget().getNode().getId().getId();
-            Objects.requireNonNull(getLocationByName(start)).createPath(getLocationByName(end));
-        }
+        String entityFile = "config" + File.separator + "entities.dot";
+        this.gameGraph = EntitiesFileParser.parseGameGraph(entityFile);
 
     }
 
     // Takes a string input and returns the location with that name. Returns null if no such location exists.
     private Location getLocationByName(String name){
-        for (Location location : locations) {
-            if(location.getName().equalsIgnoreCase(name)){
-                return location;
-            }
-        }
-        return null;
+        GameGraphNode node = this.gameGraph.getNode(name);
+        return null != node ? node.getLocationEntity() : null;
     }
 
     private String get(String command) {
@@ -169,10 +127,9 @@ public final class GameServer {
     }
 
     private String reset() throws FileNotFoundException, ParseException {
-        locations = new ArrayList<>();
         loadConfig();
         // PLACEHOLDER - REPLACE locations.get(0) WITH STARTING LOCATION WHEN LOADCONFIG FULLY IMPLEMENTED
-        player = new Player(locations.get(0));
+        player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
         return "Game has been reset";
     }
 
@@ -218,8 +175,8 @@ public final class GameServer {
     private void blockingHandleConnection(ServerSocket serverSocket) throws IOException {
         final char END_OF_TRANSMISSION = 4;
         try (Socket s = serverSocket.accept();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()))) {
+             BufferedReader reader = new BufferedReader(new InputStreamReader(s.getInputStream()));
+             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()))) {
             System.out.println("Connection established");
             String incomingCommand = reader.readLine();
             if(incomingCommand != null) {
