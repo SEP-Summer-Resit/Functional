@@ -19,6 +19,11 @@ Group Team Channel: [Functional](https://teams.microsoft.com/l/channel/19%3A15b6
 
 ![image](https://github.com/user-attachments/assets/e96fa26e-06c7-4835-917f-8e6dcd443545)
 
+## Sequence Diagram
+
+![d106f71bca1e64f1bf11eaf735f6d9e](https://github.com/user-attachments/assets/d217ff36-bd03-44bb-94d1-3d2d1b60ff29)
+
+
 
 
 
