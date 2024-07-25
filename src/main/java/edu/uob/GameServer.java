@@ -24,7 +24,6 @@ public final class GameServer {
     private final PartialMatcher partialMatcher;
     private final DecorationFilter decorationFilter;
     private final List<String> possibleActions;
-    private final List<String> availableDecorations;
 
     public static void main(String[] args) throws IOException, ParseException {
         GameServer server = new GameServer();
@@ -36,8 +35,7 @@ public final class GameServer {
         this.ambiguityRefusal = new AmbiguityRefusal();
         this.partialMatcher = new PartialMatcher();
         this.decorationFilter = new DecorationFilter();
-        this.possibleActions = Arrays.asList("look", "inv", "get", "drop", "goto", "reset", "decorate");
-        this.availableDecorations = Arrays.asList("red flower", "blue vase", "green plant", "yellow lamp"); // Example decorations
+        this.possibleActions = Arrays.asList("look", "inv", "get", "drop", "goto", "reset");
         // PLACEHOLDER - REPLACE locations.get(0) WITH STARTING LOCATION WHEN LOADCONFIG FULLY IMPLEMENTED
         this.player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
     }
@@ -48,7 +46,7 @@ public final class GameServer {
     }
 
     // Takes a string input and returns the location with that name. Returns null if no such location exists.
-    private Location getLocationByName(String name){
+    private Location getLocationByName(String name) {
         GameGraphNode node = this.gameGraph.getNode(name);
         return null != node ? node.getLocationEntity() : null;
     }
@@ -159,29 +157,15 @@ public final class GameServer {
         return "Game has been reset. All your progress is lost, but a new adventure begins!";
     }
 
-    private String decorate(String command) {
-        String[] parts = command.split(" ", 2);
-        if (parts.length < 2) {
-            return ambiguityRefusal.handleInvalidFormat(command);
-        }
-        String decoration = parts[1].trim();
-        List<String> matches = decorationFilter.filterDecorations(decoration, availableDecorations);
-
-        if (matches.size() > 1) {
-            return decorationFilter.handleAmbiguousDecorations(decoration, matches);
-        } else if (matches.size() == 1) {
-            return "You decorated with the " + matches.get(0) + ".";
-        } else {
-            String suggestion = decorationFilter.suggestSimilarDecorations(decoration, availableDecorations);
-            return "No decorations found matching '" + decoration + "'. " + suggestion;
-        }
-    }
-
     public String handleCommand(String incoming) throws FileNotFoundException, ParseException {
         String command = incoming.split(":")[1].trim();
         if (command.isEmpty()) {
             return ambiguityRefusal.handleEmptyCommand();
         }
+        
+        // Filter out decorative words from the command
+        command = decorationFilter.filterDecorations(command);
+        
         String[] parts = command.split(" ", 2);
         String action = parts[0];
         List<String> matches = partialMatcher.findMatches(action, possibleActions);
@@ -208,8 +192,6 @@ public final class GameServer {
                 return get(command);
             case "drop":
                 return drop(command);
-            case "decorate":
-                return decorate(command);
             default:
                 return ambiguityRefusal.handleUnknownCommand(command);
         }
