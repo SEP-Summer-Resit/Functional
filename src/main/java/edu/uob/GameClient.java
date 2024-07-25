@@ -11,8 +11,10 @@ public class GameClient
         else {
             String playerName = args[0];
             BufferedReader commandLine = new BufferedReader(new InputStreamReader(System.in));
+            System.out.print("\nWelcome to Functional STAG! To get started, try typing 'look'\n");
             while(true) handleNextCommand(commandLine, playerName);
         }
+
     }
 
     private static void handleNextCommand(BufferedReader commandLine, String playerName)
