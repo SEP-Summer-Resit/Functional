@@ -96,7 +96,7 @@ public final class GameServer {
     private String look() {
         StringBuilder response = new StringBuilder();
         // Location
-        response.append("The location you are currently in is ");
+        response.append("The location you are currently in is: ");
         response.append(player.getLocation().getName());
         // Artefacts
         response.append("\nThere are the following artefacts in this location: ");
