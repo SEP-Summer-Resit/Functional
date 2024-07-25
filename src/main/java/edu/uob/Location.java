@@ -10,15 +10,15 @@ package edu.uob;
  * @author liumu
  */
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import edu.uob.Character;
 
 class Location extends Entity {
-    private List<Character> characters;
-    private List<Furniture> furniture;
-    private List<Artefact> artefacts;
-    private List<Path> paths;
+    private final List<Character> characters;
+    private final List<Furniture> furniture;
+    private final List<Artefact> artefacts;
+    private final List<Path> paths;
 
     public List<Artefact> getArtefacts() {
         return artefacts;
