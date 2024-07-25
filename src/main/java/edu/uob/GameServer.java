@@ -83,14 +83,17 @@ public final class GameServer {
         String name = command.split(" ")[1];
         // CAPITALISATION MATTERS
         Location destination = getLocationByName(name);
-        if (name.isEmpty()){
+        if (name.isEmpty()) {
             return "No location provided";
         }
-        if (destination == null) {
-            return "No such location";
+        if (player.getLocation().equals(destination)){
+            return "You are already here!";
         }
-        player.setLocation(destination);
-        return "You moved to" + destination.getName();
+        if (player.getLocation().pathExists(destination)) {
+            player.setLocation(destination);
+            return "You moved to " + destination.getName();
+        }
+        return "No such location";
     }
 
     private String look() {
