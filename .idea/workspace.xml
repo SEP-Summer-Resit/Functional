@@ -5,12 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99eb1e1d-74ce-4523-8ca0-c8cd3d27f715" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/entities.dot" beforeDir="false" afterPath="$PROJECT_DIR$/config/entities.dot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/GameServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CommandTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/GameClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/uob/GameClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/GameServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/uob/GameServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/uob/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-edu.uob.CommandTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/edu.uob.CommandTests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/edu/uob/CommandTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +57,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#36 on tests&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;command-handler&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/zicro/IdeaProjects/SEP/Functional&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,

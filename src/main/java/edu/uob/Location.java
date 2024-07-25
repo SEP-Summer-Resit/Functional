@@ -20,7 +20,7 @@ class Location {
     private List<Character> characters;
     private List<Furniture> furniture;
     private List<Artefact> artefacts;
-    private final Map<String, Location> paths;
+    private List<Path> paths;
 
     public String getName() {
         return name;
@@ -42,23 +42,15 @@ class Location {
         return furniture;
     }
 
-    public Map<String, Location> getPaths() {
+    public List<Path> getPaths() {
         return paths;
     }
 
     public Location(String Name, String description) {
         this.name = Name;
         this.description = description;
-        this.artefacts = new ArrayList<>();
-        this.paths = new HashMap<>();
-    }
-
-    public void addPath(String direction, Location location) {
-        paths.put(direction, location);
-    }
-
-    public Location getPath(String direction) {
-        return paths.get(direction);
+        this.artefacts = new ArrayList<Artefact>();
+        this.paths = new ArrayList<Path>();
     }
 
     public void addArtefact(Artefact artefact) {
@@ -75,24 +67,8 @@ class Location {
         return null;
     }
 
-    public String describe() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(description).append("\nArtefacts here: ");
-        if (artefacts.isEmpty()) {
-            sb.append("none");
-        } else {
-            for (Artefact artefact : artefacts) {
-                sb.append(artefact.getName()).append(" ");
-            }
-        }
-        sb.append("\nPaths: ");
-        if (paths.isEmpty()) {
-            sb.append("none");
-        } else {
-            for (String direction : paths.keySet()) {
-                sb.append(direction).append(" ");
-            }
-        }
-        return sb.toString().trim();
+    public void createPath(Location destination){
+        paths.add(new Path(this, destination));
     }
+
 }

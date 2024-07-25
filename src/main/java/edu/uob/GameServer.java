@@ -7,12 +7,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public final class GameServer {
     private final Player player;
-    private final Map<String, Location> locations;
+    private final ArrayList<Location> locations;
 
     public static void main(String[] args) throws IOException {
         GameServer server = new GameServer();
@@ -20,24 +22,28 @@ public final class GameServer {
     }
 
     public GameServer() {
-        this.locations = new HashMap<>();
+        this.locations = new ArrayList<Location>();
         loadConfig();
-        this.player = new Player(locations.get("Start"));
+        // PLACEHOLDER - REPLACE locations.get(0) WITH STARTING LOCATION WHEN LOADCONFIG FULLY IMPLEMENTED
+        this.player = new Player(locations.get(0));
     }
 
     private void loadConfig() {
+        // We need this to load the dot file into our data structures!
+        // Keeping this as a placeholder *for now*
+
         // 加载配置文件并初始化游戏状态
         // 简单示例：创建一些位置和物品
         Location start = new Location("Start", "This is the starting location.");
         Location forest = new Location("Forest", "This is a dark forest.");
-        start.addPath("north", forest);
-        forest.addPath("south", start);
+        start.createPath(forest);
+        forest.createPath(start);
 
         Artefact sword = new Artefact("sword", "sword");
         start.addArtefact(sword);
 
-        locations.put("Start", start);
-        locations.put("Forest", forest);
+        locations.add(start);
+        locations.add(forest);
     }
 
     private String get(String artefactName) {
@@ -62,38 +68,74 @@ public final class GameServer {
         return "You are carrying: " + player.listArtefacts();
     }
 
-    private String gotoLocation(String locationName) {
-        Location newLocation = player.getLocation().getPath(locationName);
-        if (newLocation != null) {
-            player.setLocation(newLocation);
-            return "You moved to " + locationName;
+    private String gotoLocation(String command) {
+        String name = command.split(" ")[1];
+        List<Path> paths = player.getLocation().getPaths();
+        // CAPITALISATION MATTERS
+        if (name.isEmpty()){
+            return "No location provided";
         }
-        return "No such path";
+        for (Path path : paths) {
+            if (name.equals(path.getEnd().getName())){
+                player.setLocation(path.getEnd());
+                return "You moved to " + name;
+            }
+        }
+        return "No such location";
     }
 
     private String look() {
-        return player.getLocation().describe();
+        StringBuilder response = new StringBuilder();
+        // Location
+        response.append("The location you are currently in is ");
+        response.append(player.getLocation().getName());
+        // Artefacts
+        response.append("\nThere are the following artefacts in this location: ");
+        List<Artefact> artefacts = player.getLocation().getArtefacts();
+        if (artefacts.isEmpty()) {
+            response.append("None");
+        } else {
+            for (Artefact artefact : artefacts) {
+                response.append(artefact.getName()).append(" ");
+            }
+        }
+        // Paths
+        response.append("\nThere are paths to the following locations: ");
+        List<Path> paths = player.getLocation().getPaths();
+        if (paths.isEmpty()) {
+            response.append("None");
+        } else {
+            for (Path path : paths) {
+                response.append(path.getEnd().getName()).append(" ");
+            }
+        }
+        return response.toString().trim();
     }
 
     private String reset() {
         loadConfig();
-        player.setLocation(locations.get("Start"));
+        // PLACEHOLDER - REPLACE locations.get(0) WITH STARTING LOCATION WHEN LOADCONFIG FULLY IMPLEMENTED
+        player.setLocation(locations.get(0));
         player.clearInventory();
         return "Game has been reset";
     }
 
     public String handleCommand(String incoming) {
         String command = incoming.split(":")[1].trim();
-        String response = "";
+        //
         if (command.startsWith("look")) {
-            response += "The location you are currently in is ???\n";
-            response += "There are the following artefacts in this location ???\n";
-            response += "There are paths to the following locations ???";
+            return look();
         }
         if (command.startsWith("inv")) {
-            response += "You have the following items in your inventory ???";
+            return inventory();
         }
-        return response;
+        if (command.startsWith("goto")) {
+            return gotoLocation(command);
+        }
+        if (command.startsWith("reset")) {}
+        if (command.startsWith("get")) {}
+        if (command.startsWith("drop")) {}
+        return "Command not recognised";
     }
 
     // Networking method - you shouldn't need to chenge this method !
