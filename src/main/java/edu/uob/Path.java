@@ -9,15 +9,17 @@ package edu.uob;
  *
  * @author liumu
  */
- public class Paths {
-    private Locations startLocation;
-    private Locations endLocation;
+ public class Path {
+    private Location startLocation;
+    private Location endLocation;
 
-    public Locations getStart() {
+    public Path(Location startLocation, Location endLocation) {}
+
+    public Location getStart() {
         return startLocation;
     }
 
-    public Locations getEnd() {
+    public Location getEnd() {
         return endLocation;
     }
 }
