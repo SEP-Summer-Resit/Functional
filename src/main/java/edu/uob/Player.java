@@ -16,10 +16,8 @@ import java.util.List;
 class Player {
     private Location location;
     private List<Artefact> inventory;
-    private final String name;
 
-    public Player(String Name, Location Location) {
-        this.name = Name;
+    public Player(Location Location) {
         this.location = Location;
         this.inventory = new ArrayList<>();
     }

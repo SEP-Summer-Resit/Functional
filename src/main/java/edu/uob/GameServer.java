@@ -7,8 +7,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class GameServer {
+    private final Player player;
+    private final Map<String, Location> locations;
 
     public static void main(String[] args) throws IOException {
         GameServer server = new GameServer();
@@ -16,6 +20,66 @@ public final class GameServer {
     }
 
     public GameServer() {
+        this.locations = new HashMap<>();
+        loadConfig();
+        this.player = new Player(locations.get("Start"));
+    }
+
+    private void loadConfig() {
+        // 加载配置文件并初始化游戏状态
+        // 简单示例：创建一些位置和物品
+        Location start = new Location("Start", "This is the starting location.");
+        Location forest = new Location("Forest", "This is a dark forest.");
+        start.addPath("north", forest);
+        forest.addPath("south", start);
+
+        Artefact sword = new Artefact("sword", "sword");
+        start.addArtefact(sword);
+
+        locations.put("Start", start);
+        locations.put("Forest", forest);
+    }
+
+    private String get(String artefactName) {
+        Artefact artefact = player.getLocation().removeArtefact(artefactName);
+        if (artefact != null) {
+            player.addArtefact(artefact);
+            return "You picked up the " + artefactName;
+        }
+        return "No such artefact here";
+    }
+
+    private String drop(String artefactName) {
+        Artefact artefact = player.removeArtefact(artefactName);
+        if (artefact != null) {
+            player.getLocation().addArtefact(artefact);
+            return "You dropped the " + artefactName;
+        }
+        return "You don't have such an artefact";
+    }
+
+    private String inventory() {
+        return "You are carrying: " + player.listArtefacts();
+    }
+
+    private String gotoLocation(String locationName) {
+        Location newLocation = player.getLocation().getPath(locationName);
+        if (newLocation != null) {
+            player.setLocation(newLocation);
+            return "You moved to " + locationName;
+        }
+        return "No such path";
+    }
+
+    private String look() {
+        return player.getLocation().describe();
+    }
+
+    private String reset() {
+        loadConfig();
+        player.setLocation(locations.get("Start"));
+        player.clearInventory();
+        return "Game has been reset";
     }
 
     public String handleCommand(String incoming) {

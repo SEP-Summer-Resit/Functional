@@ -16,14 +16,6 @@ final class CommandTests {
   @BeforeEach
   void setup() {
       server = new GameServer();
-      // Create some test objects - will probably change this once reading dot file works
-      Location testLoc1 = new Location("Location 1", "Test location");
-      Location testLoc2 = new Location("Location 2", "Test location");
-      Path testPath = new Path(testLoc1, testLoc2);
-      Artefact testArte = new Artefact("Artefact 1", "Test artefact");
-      Character testCharacter = new Character("Character 1", "Test character");
-      Player testPlayer = new Player("Tester", testLoc1);
-      testLoc1.addArtefact(testArte);
   }
 
   @Test
@@ -35,7 +27,7 @@ final class CommandTests {
     Location testLoc2 = new Location("Location2", "Test location");
     Artefact testArte1 = new Artefact("Artefact1", "Test artefact");
     Artefact testArte2 = new Artefact("Artefact2", "Test artefact");
-    Player testPlayer = new Player("Tester", testLoc1);
+    Player testPlayer = new Player(testLoc1);
     testLoc1.addArtefact(testArte1);
     testLoc2.addArtefact(testArte2);
 
@@ -63,7 +55,7 @@ final class CommandTests {
     Location testLoc2 = new Location("Location2", "Test location");
     Location testLoc3 = new Location("Location3", "Test location");
     Path testPath = new Path(testLoc1, testLoc2);
-    Player testPlayer = new Player("Tester", testLoc1);
+    Player testPlayer = new Player(testLoc1);
 
     // Valid input:
     String response1 = server.handleCommand("Daniel: goto Location2");
@@ -86,7 +78,7 @@ final class CommandTests {
   void testDropCommand(){
     // Set up test objects
     Location testLoc1 = new Location("Location1", "Test location");
-    Player testPlayer = new Player("Tester", testLoc1);
+    Player testPlayer = new Player(testLoc1);
     Artefact testArte = new Artefact("Artefact1", "Test artefact");
     testPlayer.addArtefact(testArte);
 
