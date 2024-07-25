@@ -1,50 +1,72 @@
 package edu.uob;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import com.alexmerz.graphviz.*;
+import com.alexmerz.graphviz.objects.*;
 
 public final class GameServer {
     private Player player;
     private ArrayList<Location> locations;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         GameServer server = new GameServer();
         server.blockingListenOn(8888);
     }
 
-    public GameServer() {
+    public GameServer() throws FileNotFoundException, ParseException {
         this.locations = new ArrayList<>();
         loadConfig();
         // PLACEHOLDER - REPLACE locations.get(0) WITH STARTING LOCATION WHEN LOADCONFIG FULLY IMPLEMENTED
         this.player = new Player(locations.get(0));
     }
 
-    private void loadConfig() {
-        // We need this to load the dot file into our data structures!
-        // Keeping this as a placeholder *for now*
+    private void loadConfig() throws FileNotFoundException, ParseException {
+        Parser parser = new Parser();
+        String file = "config" + File.separator + "entities.dot";
+        FileReader reader = new FileReader(file);
+        parser.parse(reader);
+        Graph wholeDocument = parser.getGraphs().get(0);
+        ArrayList<Graph> configParts = wholeDocument.getSubgraphs();
+        ArrayList<Graph> configLocations = configParts.get(0).getSubgraphs();
+        ArrayList<Edge> configPaths = configParts.get(1).getEdges();
 
-        // 加载配置文件并初始化游戏状态
-        // 简单示例：创建一些位置和物品
-        Location start = new Location("Start", "This is the starting location.");
-        Location forest = new Location("Forest", "This is a dark forest.");
+        // LOCATIONS
+        for (Graph location : configLocations) {
+            // Make location
+            Location newLocation = new Location(location.getNodes(false).get(0).getId().getId());
+            // Populate location with entities
+            ArrayList<Graph> entities = location.getSubgraphs();
+            for (Graph entity : entities) {
+                if (entity.getId().getId().equals("artefacts")) {
+                    for (Node artefact : entity.getNodes(false)) {
+                        newLocation.addArtefact(new Artefact(artefact.getId().getId(), artefact.getAttribute("description")));
+                    }
+                }
+                if (entity.getId().getId().equals("furniture")) {
+                    for (Node furniture : entity.getNodes(false)) {
+                        newLocation.addFurniture(new Furniture(furniture.getId().getId(), furniture.getAttribute("description")));
+                    }
+                }
+                if (entity.getId().getId().equals("characters")) {
+                    for (Node character : entity.getNodes(false)) {
+                        newLocation.addCharacter(new Character(character.getId().getId(), character.getAttribute("description")));
+                    }
+                }
+            }
+            locations.add(newLocation);
+        }
 
-        start.createPath(forest);
-        forest.createPath(start);
+        // PATHS
+        for (Edge edge : configPaths) {
+            String start = edge.getSource().getNode().getId().getId();
+            String end = edge.getTarget().getNode().getId().getId();
+            Objects.requireNonNull(getLocationByName(start)).createPath(getLocationByName(end));
+        }
 
-        Artefact sword = new Artefact("sword", "sword");
-        start.addArtefact(sword);
-
-        locations.add(start);
-        locations.add(forest);
     }
 
     // Takes a string input and returns the location with that name. Returns null if no such location exists.
@@ -113,6 +135,26 @@ public final class GameServer {
                 response.append(artefact.getName()).append(" ");
             }
         }
+        // Furniture
+        response.append("\nThere is the following furniture in this location: ");
+        List<Furniture> furniture = player.getLocation().getFurniture();
+        if (furniture.isEmpty()) {
+            response.append("None");
+        } else {
+            for (Furniture furniture1 : furniture) {
+                response.append(furniture1.getName()).append(" ");
+            }
+        }
+        // Characters
+        response.append("\nThere are the following characters in this location: ");
+        List<Character> characters = player.getLocation().getCharacters();
+        if (characters.isEmpty()) {
+            response.append("None");
+        } else {
+            for (Character character : characters) {
+                response.append(character.getName()).append(" ");
+            }
+        }
         // Paths
         response.append("\nThere are paths to the following locations: ");
         List<Path> paths = player.getLocation().getPaths();
@@ -126,7 +168,7 @@ public final class GameServer {
         return response.toString().trim();
     }
 
-    private String reset() {
+    private String reset() throws FileNotFoundException, ParseException {
         locations = new ArrayList<>();
         loadConfig();
         // PLACEHOLDER - REPLACE locations.get(0) WITH STARTING LOCATION WHEN LOADCONFIG FULLY IMPLEMENTED
@@ -134,7 +176,7 @@ public final class GameServer {
         return "Game has been reset";
     }
 
-    public String handleCommand(String incoming) {
+    public String handleCommand(String incoming) throws FileNotFoundException, ParseException {
         String command = incoming.split(":")[1].trim();
         //
         if (command.startsWith("look")) {
@@ -187,6 +229,8 @@ public final class GameServer {
                 writer.write("\n" + END_OF_TRANSMISSION + "\n");
                 writer.flush();
             }
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
     }
 }

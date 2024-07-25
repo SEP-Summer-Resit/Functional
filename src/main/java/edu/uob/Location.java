@@ -16,7 +16,6 @@ import java.util.Map;
 
 class Location {
     private final String name;
-    private final String description;
     private List<Character> characters;
     private List<Furniture> furniture;
     private List<Artefact> artefacts;
@@ -24,10 +23,6 @@ class Location {
 
     public String getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public List<Artefact> getArtefacts() {
@@ -46,15 +41,20 @@ class Location {
         return paths;
     }
 
-    public Location(String Name, String description) {
+    public Location(String Name) {
         this.name = Name;
-        this.description = description;
-        this.artefacts = new ArrayList<Artefact>();
-        this.paths = new ArrayList<Path>();
+        this.artefacts = new ArrayList<>();
+        this.paths = new ArrayList<>();
+        this.furniture = new ArrayList<>();
+        this.characters = new ArrayList<>();
     }
 
+    public void addFurniture(Furniture furniture) { this.furniture.add(furniture); }
+
+    public void addCharacter(Character character) { this.characters.add(character); }
+
     public void addArtefact(Artefact artefact) {
-        artefacts.add(artefact);
+        this.artefacts.add(artefact);
     }
 
     public Artefact removeArtefact(String artefactName) {

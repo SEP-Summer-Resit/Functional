@@ -9,15 +9,9 @@ package edu.uob;
  *
  * @author liumu
  */
-public class Furniture {
-    private String name;
-    private String description;
+public class Furniture extends Entity{
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
+    public Furniture(String Name, String Description){
+        super(Name, Description);
     }
 }
