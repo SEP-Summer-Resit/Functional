@@ -25,14 +25,16 @@ public final class GameServer {
     private final DecorationFilter decorationFilter; // Decoration filter
     private final InvertedMatcher invertedMatcher; // Inverted matcher
     private final List<String> possibleActions; // List of possible actions
+    private final String configFile;
 
     public static void main(String[] args) throws IOException, ParseException {
-        GameServer server = new GameServer();
+        GameServer server = new GameServer("entities.dot");
         server.blockingListenOn(8888); // Listen on port 8888
     }
 
-    public GameServer() throws FileNotFoundException, ParseException {
-        loadConfig();
+    public GameServer(String configFileName) throws FileNotFoundException, ParseException {
+        this.configFile = configFileName;
+        loadConfig(configFileName);
         this.ambiguityRefusal = new AmbiguityRefusal();
         this.partialMatcher = new PartialMatcher();
         this.decorationFilter = new DecorationFilter();
@@ -43,15 +45,20 @@ public final class GameServer {
     }
 
     // Load configuration file
-    private void loadConfig() throws FileNotFoundException, ParseException {
-        String entityFile = "config" + File.separator + "entities.dot";
+    private void loadConfig(String configFileName) throws FileNotFoundException, ParseException {
+        String entityFile = "config" + File.separator + configFileName;
         this.gameGraph = EntitiesFileParser.parseGameGraph(entityFile);
     }
 
     // Get location by name
-    private Location getLocationByName(String name) {
+    public Location getLocationByName(String name) {
         GameGraphNode node = this.gameGraph.getNode(name);
         return null != node ? node.getLocationEntity() : null;
+    }
+
+    // Get player
+    public Player getPlayer(){
+        return this.player;
     }
 
     // Handle 'get' command
@@ -107,7 +114,10 @@ public final class GameServer {
             player.setLocation(destination);
             return "You moved to " + destination.getName();
         }
-        return "There is no path to the specified location. Try a different route.";
+        if (getLocationByName(destination.getName()) != null) {
+            return "There is no path to the specified location. Try a different route.";
+        }
+        return "There is no such location. Perhaps you meant something else?";
     }
 
     // Handle 'look' command
@@ -161,7 +171,7 @@ public final class GameServer {
 
     // Handle 'reset' command
     private String reset() throws FileNotFoundException, ParseException {
-        loadConfig();
+        loadConfig(configFile);
         player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
         return "Game has been reset. All your progress is lost, but a new adventure begins!";
     }
