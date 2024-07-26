@@ -124,11 +124,37 @@ final class CommandTests {
   }
 
   @Test
-  void testResetCommand(){
-      /* TO ADD:
-          - properly resets the game state
-          - reloads the config file
-       */
+  void testResetCommand() throws FileNotFoundException, ParseException {
+    // Setup:
+    Location testLoc1 = server.getLocationByName("testLoc1");
+    Location testLoc2 = server.getLocationByName("testLoc2");
+    Location testLoc3 = server.getLocationByName("testLoc3");
+    Player testPlayer = server.getPlayer();
+    Artefact testArte4 = new Artefact("testArte4", "Test artefact");
+    testLoc1.addArtefact(testArte4);
+    Furniture testFurn4 = new Furniture("testFurn4", "Test Furniture");
+    testLoc1.addFurniture(testFurn4);
+    Character testChara4 = new Character("testChar4", "Test Character");
+    testLoc1.addCharacter(testChara4);
+    testLoc1.removeArtefact("testArte1");
+    testLoc1.createPath(testLoc3);
+    testPlayer.setLocation(testLoc2);
+    // Command:
+    String response = server.handleCommand("Daniel: reset");
+    assertTrue(response.contains("Game has been reset. All your progress is lost, but a new adventure begins!"), "Incorrect or no response to Daniel: reset");
+    Location newTestLoc1 = server.getLocationByName("testLoc1");
+    Location newTestLoc2 = server.getLocationByName("testLoc2");
+    Location newTestLoc3 = server.getLocationByName("testLoc3");
+    Player newTestPlayer = server.getPlayer();
+    assertNotEquals(newTestLoc1, testLoc1, "Location did not reset after 'reset'");
+    assertNotEquals(newTestLoc2, testLoc2, "Location did not reset after 'reset'");
+    assertNotEquals(newTestLoc3, testLoc3, "Location did not reset after 'reset'");
+    assertNotEquals(newTestPlayer, testPlayer, "Player did not reset after 'reset'");
+    assertFalse(newTestLoc1.getArtefacts().contains(testArte4), "Artefact added to location not removed after 'reset'");
+    assertFalse(newTestLoc1.getFurniture().contains(testFurn4), "Furniture added to location not removed after 'reset'");
+    assertFalse(newTestLoc1.getCharacters().contains(testChara4), "Character added to location not removed after 'reset'");
+    assertFalse(newTestLoc1.pathExists(newTestLoc3), "Paths not reset after 'reset'");
+    assertEquals(newTestPlayer.getLocation(), newTestLoc1, "Player location did not reset after 'reset'");
   }
 /*
   @Test

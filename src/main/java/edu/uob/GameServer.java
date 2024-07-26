@@ -25,6 +25,7 @@ public final class GameServer {
     private final DecorationFilter decorationFilter; // Decoration filter
     private final InvertedMatcher invertedMatcher; // Inverted matcher
     private final List<String> possibleActions; // List of possible actions
+    private final String configFile;
 
     public static void main(String[] args) throws IOException, ParseException {
         GameServer server = new GameServer("entities.dot");
@@ -32,6 +33,7 @@ public final class GameServer {
     }
 
     public GameServer(String configFileName) throws FileNotFoundException, ParseException {
+        this.configFile = configFileName;
         loadConfig(configFileName);
         this.ambiguityRefusal = new AmbiguityRefusal();
         this.partialMatcher = new PartialMatcher();
@@ -169,7 +171,7 @@ public final class GameServer {
 
     // Handle 'reset' command
     private String reset() throws FileNotFoundException, ParseException {
-        loadConfig("entities.dot");
+        loadConfig(configFile);
         player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
         return "Game has been reset. All your progress is lost, but a new adventure begins!";
     }
