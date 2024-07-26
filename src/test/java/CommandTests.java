@@ -1,14 +1,12 @@
 package edu.uob;
 
-import com.alexmerz.graphviz.ParseException;
+import java.io.FileNotFoundException;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.file.Paths;
-import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.alexmerz.graphviz.ParseException;
 
 final class CommandTests {
 
@@ -107,9 +105,9 @@ final class CommandTests {
   void testLookCommand() throws FileNotFoundException, ParseException {
     // TO ADD: 'Look' lists correct location, artefacts and paths.
     String response = server.handleCommand("Daniel: look");
-    assertTrue(response.contains("The location you are currently in is"), "No location returned by `look`");
-    assertTrue(response.contains("There are the following artefacts in this location"), "No artefacts returned by `look`");
-    assertTrue(response.contains("There are paths to the following locations"), "No paths returned by `look`");
+    assertTrue(response.contains("The location you are currently in is"), "No location returned by look");
+    assertTrue(response.contains("There are the following artefacts in this location"), "No artefacts returned by look");
+    assertTrue(response.contains("There are paths to the following locations"), "No paths returned by look");
   }
 
   @Test
