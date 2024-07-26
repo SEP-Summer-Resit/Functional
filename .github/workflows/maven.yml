@@ -26,4 +26,11 @@ jobs:
         run: mvn -B clean package
 
       - name: Execute tests
-        run: mvn -B test
+        run: mvn -B test -X
+
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: surefire-reports
+          path: target/surefire-reports
