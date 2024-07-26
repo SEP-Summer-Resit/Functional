@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Action {
 
-    private List<String> triggers;
-    private List<String> subjects;
-    private List<String> consumed;
-    private List<String> produced;
+    private final List<String> triggers;
+    private final List<String> subjects;
+    private final List<String> consumed;
+    private final List<String> produced;
     private String narration;
 
     public Action() {
@@ -58,4 +58,40 @@ public class Action {
         return narration;
     }
 
+    /**
+     * Executes the action, consuming and producing specified items.
+     * 
+     * @param player   The player performing the action.
+     * @param location The location where the action is performed.
+     * @param storeroom The storeroom location for managing consumed and produced items.
+     * @return A narration of the action performed.
+     */
+    public String execute(Player player, Location location, Location storeroom) {
+        // Consume items from the player's inventory and move them to the storeroom
+        for (String item : consumed) {
+            Artefact artefact = player.removeArtefact(item);
+            if (artefact != null) {
+                storeroom.addArtefact(artefact);
+            } else {
+                artefact = location.removeArtefact(item);
+                if (artefact != null) {
+                    storeroom.addArtefact(artefact);
+                } else {
+                    return "You do not have the required item: " + item;
+                }
+            }
+        }
+
+        // Produce items from the storeroom and add them to the player's inventory or location
+        for (String item : produced) {
+            Artefact artefact = storeroom.removeArtefact(item);
+            if (artefact != null) {
+                player.addArtefact(artefact);
+            } else {
+                return "The required item is not available in the storeroom: " + item;
+            }
+        }
+
+        return narration;
+    }
 }
