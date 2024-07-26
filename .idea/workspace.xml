@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99eb1e1d-74ce-4523-8ca0-c8cd3d27f715" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/config/testEntities.dot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/Furniture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Furniture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/GameServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uob/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uob/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CommandTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CommandTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/Furniture.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/uob/Furniture.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/GameServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/uob/GameServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/edu/uob/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/edu/uob/Location.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,9 +47,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "command-handler",
+    "git-widget-placeholder": "command-handler-tests",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/zicro/IdeaProjects/SEP/Functional",
+    "last_opened_file_path": "C:/Users/zicro/IdeaProjects/SEP/Functional/config",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -65,6 +59,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\zicro\IdeaProjects\SEP\Functional\config" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Functional" />
