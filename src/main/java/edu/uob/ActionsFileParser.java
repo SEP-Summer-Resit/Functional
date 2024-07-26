@@ -1,15 +1,24 @@
 package edu.uob;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.parsers.*;
-import org.w3c.dom.*;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class ActionsFileParser {
 
     public static List<Action> parseActions(String fileName) {
-        List<Action> actions = new ArrayList<Action>();
+        List<Action> actions = new ArrayList<>();
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -40,8 +49,7 @@ public class ActionsFileParser {
                 action.setNarration(actionElement.getElementsByTagName("narration").item(0).getTextContent());
                 actions.add(action);
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (IOException | ParserConfigurationException | DOMException | SAXException ex) {
         }
         return actions;
     }

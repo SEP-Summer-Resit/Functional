@@ -37,7 +37,7 @@ public final class GameServer {
         this.partialMatcher = new PartialMatcher();
         this.decorationFilter = new DecorationFilter();
         this.invertedMatcher = new InvertedMatcher();
-        this.possibleActions = Arrays.asList("look", "inv", "get", "drop", "goto", "reset", "find");
+        this.possibleActions = Arrays.asList("look", "inv", "get", "drop", "goto", "reset", "find", "use");
         // Create player with initial location
         this.player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
     }
@@ -181,6 +181,23 @@ public final class GameServer {
         }
     }
 
+    // Handle 'use' command
+    private String use(String command) {
+        String[] parts = command.split(" ", 2);
+        if (parts.length < 2) {
+            return ambiguityRefusal.handleInvalidFormat(command);
+        }
+        String actionDetails = parts[1].trim();
+        Action action = new Action(); // Create and configure the action accordingly
+        // Add logic to set up the action with triggers, subjects, consumed, produced, and narration
+        // Example:
+        action.addConsumed("someItem");
+        action.addProduced("newItem");
+        action.setNarration("You have used the item successfully.");
+
+        return action.execute(player, player.getLocation());
+    }
+
     // Handle incoming commands
     public String handleCommand(String incoming) throws FileNotFoundException, ParseException {
         String command = incoming.split(":")[1].trim();
@@ -219,6 +236,8 @@ public final class GameServer {
                 return drop(command);
             case "find":
                 return find(command);
+            case "use":
+                return use(command);
             default:
                 return ambiguityRefusal.handleUnknownCommand(command);
         }

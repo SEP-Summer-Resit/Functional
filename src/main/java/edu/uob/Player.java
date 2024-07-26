@@ -1,24 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package edu.uob;
-
-/**
- *
- * @author liumu
- */
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a player in the game, who has a location and an inventory of artefacts.
+ */
 class Player {
     private Location location;
     private List<Artefact> inventory;
 
-    public Player(Location Location) {
-        this.location = Location;
+    public Player(Location location) {
+        this.location = location;
         this.inventory = new ArrayList<>();
     }
 
@@ -59,6 +52,3 @@ class Player {
         inventory.clear();
     }
 }
-
-
-

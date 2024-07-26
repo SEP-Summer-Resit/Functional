@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Action {
 
-    private List<String> triggers;
-    private List<String> subjects;
-    private List<String> consumed;
-    private List<String> produced;
+    private final List<String> triggers;
+    private final List<String> subjects;
+    private final List<String> consumed;
+    private final List<String> produced;
     private String narration;
 
     public Action() {
@@ -58,4 +58,32 @@ public class Action {
         return narration;
     }
 
+    /**
+     * Executes the action, consuming and producing specified items.
+     * 
+     * @param player   The player performing the action.
+     * @param location The location where the action is performed.
+     * @return A narration of the action performed.
+     */
+    public String execute(Player player, Location location) {
+        // Consume items from the player's inventory and location
+        for (String item : consumed) {
+            Artefact artefact = player.removeArtefact(item);
+            if (artefact == null) {
+                artefact = location.removeArtefact(item);
+            }
+            if (artefact == null) {
+                return "You do not have the required item: " + item;
+            }
+        }
+
+        // Produce items and add them to the player's inventory or location
+        for (String item : produced) {
+            Artefact artefact = new Artefact(item, "Produced item");
+            player.addArtefact(artefact);
+        }
+
+        return narration;
+    }
 }
+
