@@ -27,12 +27,12 @@ public final class GameServer {
     private final List<String> possibleActions; // List of possible actions
 
     public static void main(String[] args) throws IOException, ParseException {
-        GameServer server = new GameServer();
+        GameServer server = new GameServer("entities.dot");
         server.blockingListenOn(8888); // Listen on port 8888
     }
 
-    public GameServer() throws FileNotFoundException, ParseException {
-        loadConfig();
+    public GameServer(String configFileName) throws FileNotFoundException, ParseException {
+        loadConfig(configFileName);
         this.ambiguityRefusal = new AmbiguityRefusal();
         this.partialMatcher = new PartialMatcher();
         this.decorationFilter = new DecorationFilter();
@@ -43,8 +43,8 @@ public final class GameServer {
     }
 
     // Load configuration file
-    private void loadConfig() throws FileNotFoundException, ParseException {
-        String entityFile = "config" + File.separator + "entities.dot";
+    private void loadConfig(String configFileName) throws FileNotFoundException, ParseException {
+        String entityFile = "config" + File.separator + configFileName;
         this.gameGraph = EntitiesFileParser.parseGameGraph(entityFile);
     }
 
@@ -161,7 +161,7 @@ public final class GameServer {
 
     // Handle 'reset' command
     private String reset() throws FileNotFoundException, ParseException {
-        loadConfig();
+        loadConfig("entities.dot");
         player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
         return "Game has been reset. All your progress is lost, but a new adventure begins!";
     }

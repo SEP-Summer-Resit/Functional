@@ -15,7 +15,7 @@ final class CommandTests {
   // This method is automatically run _before_ each of the @Test methods
   @BeforeEach
   void setup() throws FileNotFoundException, ParseException {
-      server = new GameServer();
+      server = new GameServer("testEntities.dot");
   }
   /*
   @Test
