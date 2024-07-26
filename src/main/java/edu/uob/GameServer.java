@@ -49,9 +49,14 @@ public final class GameServer {
     }
 
     // Get location by name
-    private Location getLocationByName(String name) {
+    public Location getLocationByName(String name) {
         GameGraphNode node = this.gameGraph.getNode(name);
         return null != node ? node.getLocationEntity() : null;
+    }
+
+    // Get player
+    public Player getPlayer(){
+        return this.player;
     }
 
     // Handle 'get' command
@@ -107,7 +112,10 @@ public final class GameServer {
             player.setLocation(destination);
             return "You moved to " + destination.getName();
         }
-        return "There is no path to the specified location. Try a different route.";
+        if (getLocationByName(destination.getName()) != null) {
+            return "There is no path to the specified location. Try a different route.";
+        }
+        return "There is no such location. Perhaps you meant something else?";
     }
 
     // Handle 'look' command

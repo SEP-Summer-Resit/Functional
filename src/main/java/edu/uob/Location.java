@@ -74,5 +74,4 @@ class Location extends Entity {
     public void createPath(Location destination){
         paths.add(new Path(destination));
     }
-
 }

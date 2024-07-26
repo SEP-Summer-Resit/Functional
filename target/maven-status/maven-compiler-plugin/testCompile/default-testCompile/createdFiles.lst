@@ -1,0 +1,7 @@
+edu\uob\AmbiguityRefusalTest.class
+edu\uob\CommandTests.class
+edu\uob\DecorationFilterTest.class
+edu\uob\PartialMatcherTest.class
+edu\uob\InvertedMatcherTest.class
+edu\uob\ActionsFileParserTest.class
+edu\uob\EntitiesFileParserTest.class
