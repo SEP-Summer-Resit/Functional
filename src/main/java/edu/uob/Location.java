@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package edu.uob;
 
 import java.util.ArrayList;
@@ -108,5 +104,37 @@ public class Location extends Entity {
      */
     public void createPath(Location destination){
         paths.add(new Path(destination));
+    }
+
+    /**
+     * Transfers an artefact from the storeroom to this location.
+     * 
+     * @param storeroom The storeroom location.
+     * @param artefactName The name of the artefact to transfer.
+     * @return True if the artefact was successfully transferred, false otherwise.
+     */
+    public boolean transferFromStoreroom(Location storeroom, String artefactName) {
+        Artefact artefact = storeroom.removeArtefact(artefactName);
+        if (artefact != null) {
+            this.addArtefact(artefact);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Transfers an artefact from this location to the storeroom.
+     * 
+     * @param storeroom The storeroom location.
+     * @param artefactName The name of the artefact to transfer.
+     * @return True if the artefact was successfully transferred, false otherwise.
+     */
+    public boolean transferToStoreroom(Location storeroom, String artefactName) {
+        Artefact artefact = this.removeArtefact(artefactName);
+        if (artefact != null) {
+            storeroom.addArtefact(artefact);
+            return true;
+        }
+        return false;
     }
 }
