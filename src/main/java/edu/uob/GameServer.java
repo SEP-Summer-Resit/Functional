@@ -20,6 +20,7 @@ public final class GameServer {
 
     private GameGraph gameGraph; // Game graph
     private Player player; // Player
+    private Location storeroom; // Storeroom
     private final AmbiguityRefusal ambiguityRefusal; // Ambiguity handler
     private final PartialMatcher partialMatcher; // Partial matcher
     private final DecorationFilter decorationFilter; // Decoration filter
@@ -37,9 +38,11 @@ public final class GameServer {
         this.partialMatcher = new PartialMatcher();
         this.decorationFilter = new DecorationFilter();
         this.invertedMatcher = new InvertedMatcher();
-        this.possibleActions = Arrays.asList("look", "inv", "get", "drop", "goto", "reset", "find");
+        this.possibleActions = Arrays.asList("look", "inv", "get", "drop", "goto", "reset", "find", "use");
         // Create player with initial location
         this.player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
+        // Initialize storeroom
+        this.storeroom = getLocationByName("Storeroom");
     }
 
     // Load configuration file
@@ -162,7 +165,8 @@ public final class GameServer {
     // Handle 'reset' command
     private String reset() throws FileNotFoundException, ParseException {
         loadConfig();
-        player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
+        this.player = new Player(this.gameGraph.getFirstNode().getLocationEntity());
+        this.storeroom = getLocationByName("Storeroom");
         return "Game has been reset. All your progress is lost, but a new adventure begins!";
     }
 
@@ -179,6 +183,23 @@ public final class GameServer {
         } else {
             return invertedMatcher.handleAmbiguity(searchQuery, matches);
         }
+    }
+
+    // Handle 'use' command
+    private String use(String command) {
+        String[] parts = command.split(" ", 2);
+        if (parts.length < 2) {
+            return ambiguityRefusal.handleInvalidFormat(command);
+        }
+        String actionDetails = parts[1].trim();
+        Action action = new Action(); // Create and configure the action accordingly
+        // Add logic to set up the action with triggers, subjects, consumed, produced, and narration
+        // Example:
+        action.addConsumed("someItem");
+        action.addProduced("newItem");
+        action.setNarration("You have used the item successfully.");
+
+        return action.execute(player, player.getLocation(), storeroom);
     }
 
     // Handle incoming commands
@@ -219,6 +240,8 @@ public final class GameServer {
                 return drop(command);
             case "find":
                 return find(command);
+            case "use":
+                return use(command);
             default:
                 return ambiguityRefusal.handleUnknownCommand(command);
         }
