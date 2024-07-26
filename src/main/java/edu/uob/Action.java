@@ -63,27 +63,38 @@ public class Action {
      * 
      * @param player   The player performing the action.
      * @param location The location where the action is performed.
+     * @param storeroom The storeroom location for managing consumed and produced items.
      * @return A narration of the action performed.
      */
-    public String execute(Player player, Location location) {
-        // Consume items from the player's inventory and location
+    public String execute(Player player, Location location, Location storeroom) {
+        // Consume items from the player's inventory and move them to the storeroom
         for (String item : consumed) {
             Artefact artefact = player.removeArtefact(item);
-            if (artefact == null) {
+            if (artefact != null) {
+                storeroom.addArtefact(artefact);
+            } else {
                 artefact = location.removeArtefact(item);
-            }
-            if (artefact == null) {
-                return "You do not have the required item: " + item;
+                if (artefact != null) {
+                    storeroom.addArtefact(artefact);
+                } else {
+                    return "You do not have the required item: " + item;
+                }
             }
         }
 
-        // Produce items and add them to the player's inventory or location
+        // Produce items from the storeroom and add them to the player's inventory or location
         for (String item : produced) {
-            Artefact artefact = new Artefact(item, "Produced item");
-            player.addArtefact(artefact);
+            Artefact artefact = storeroom.removeArtefact(item);
+            if (artefact != null) {
+                player.addArtefact(artefact);
+            } else {
+                return "The required item is not available in the storeroom: " + item;
+            }
         }
 
         return narration;
     }
 }
+
+
 
