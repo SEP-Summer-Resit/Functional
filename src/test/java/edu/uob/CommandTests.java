@@ -156,21 +156,45 @@ final class CommandTests {
     assertFalse(newTestLoc1.pathExists(newTestLoc3), "Paths not reset after 'reset'");
     assertEquals(newTestPlayer.getLocation(), newTestLoc1, "Player location did not reset after 'reset'");
   }
-/*
+
   @Test
   void testLookCommand() throws FileNotFoundException, ParseException {
-    // TO ADD: 'Look' lists correct location, artefacts and paths.
+    // Setup:
+    Location testLoc1 = server.getLocationByName("testLoc1");
+    // Command:
     String response = server.handleCommand("Daniel: look");
-    assertTrue(response.contains("The location you are currently in is"), "No location returned by look");
-    assertTrue(response.contains("There are the following artefacts in this location"), "No artefacts returned by look");
-    assertTrue(response.contains("There are paths to the following locations"), "No paths returned by look");
+    assertTrue(response.contains("You are currently in: "), "No location returned by look");
+    assertTrue(response.contains("You see the following artefacts here: "), "No artefacts returned by look");
+    assertTrue(response.contains("You notice the following furniture: "), "No furniture returned by look");
+    assertTrue(response.contains("You see the following characters: "), "No characters returned by look");
+    assertTrue(response.contains("There are paths leading to: "), "No paths returned by look");
+    assertTrue(response.contains(testLoc1.getName()), "Incorrect location returned by look");
+    for (Artefact artefact : testLoc1.getArtefacts()) {
+      assertTrue(response.contains(artefact.getName()), "Incorrect artefacts returned by look");
+    }
+    for (Furniture furniture : testLoc1.getFurniture()) {
+      assertTrue(response.contains(furniture.getName()), "Incorrect furniture returned by look");
+    }
+    for (Character character : testLoc1.getCharacters()) {
+      assertTrue(response.contains(character.getName()), "Incorrect characters returned by look");
+    }
+    for (Path path : testLoc1.getPaths()) {
+      assertTrue(response.contains(path.getEnd().getName()), "Incorrect paths returned by look");
+    }
   }
 
   @Test
   void testInventoryCommand() throws FileNotFoundException, ParseException {
-    // TO ADD: Inventory lists correct items
+    // Setup:
+    Player testPlayer = server.getPlayer();
+    Artefact testArte4 = new Artefact("testArte4", "Test artefact");
+    Artefact testArte5 = new Artefact("testArte5", "Test artefact");
+    testPlayer.addArtefact(testArte4);
+    testPlayer.addArtefact(testArte5);
+    // Command:
     String response = server.handleCommand("Daniel: inv");
-    assertTrue(response.contains("You have the following items in your inventory"), "Inventory not listed");
+    assertTrue(response.contains("You are carrying: "), "Inventory not listed by 'inv'");
+    assertTrue(response.contains(testArte4.getName()) && response.contains(testArte5.getName()), "Incorrect artefacts listed by 'inv'");
   }
- */
+
 }

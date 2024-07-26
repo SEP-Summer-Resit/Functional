@@ -13,10 +13,9 @@
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-edu.uob.DecorationFilterTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-edu.uob.DecorationFilterTest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-edu.uob.EntitiesFileParserTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-edu.uob.EntitiesFileParserTest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-edu.uob.InvertedMatcherTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-edu.uob.InvertedMatcherTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/edu.uob.AmbiguityRefusalTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/edu.uob.AmbiguityRefusalTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/edu.uob.CommandTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/edu.uob.CommandTests.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/edu.uob.DecorationFilterTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/edu.uob.DecorationFilterTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/edu.uob.EntitiesFileParserTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/edu.uob.EntitiesFileParserTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/edu.uob.InvertedMatcherTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/edu.uob.InvertedMatcherTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/edu/uob/CommandTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/edu/uob/CommandTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

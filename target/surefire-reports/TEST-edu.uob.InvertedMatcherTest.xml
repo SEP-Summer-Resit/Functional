@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.uob.InvertedMatcherTest" time="0.006" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.uob.InvertedMatcherTest" time="0.005" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="22"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="C:\Users\zicro\.jdks\openjdk-22.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\zicro\AppData\Local\Temp\surefire18423677492772236779\surefirebooter11060304116968672431.jar C:\Users\zicro\AppData\Local\Temp\surefire18423677492772236779 2024-07-26T14-50-53_424-jvmRun1 surefire12182220014829244616tmp surefire_08025264085489376099tmp"/>
+    <property name="sun.java.command" value="C:\Users\zicro\AppData\Local\Temp\surefire8247604086852422475\surefirebooter7456735808698019118.jar C:\Users\zicro\AppData\Local\Temp\surefire8247604086852422475 2024-07-26T15-38-28_327-jvmRun1 surefire12953035380618964630tmp surefire_02365957695154828274tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\zicro\IdeaProjects\SEP\Functional\target\test-classes;C:\Users\zicro\IdeaProjects\SEP\Functional\target\classes;C:\Users\zicro\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;C:\Users\zicro\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\zicro\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\zicro\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\zicro\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\zicro\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\zicro\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\zicro\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\zicro\.m2\repository\org\junit\platform\junit-platform-suite\1.8.2\junit-platform-suite-1.8.2.jar;C:\Users\zicro\.m2\repository\org\junit\platform\junit-platform-suite-api\1.8.2\junit-platform-suite-api-1.8.2.jar;C:\Users\zicro\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.8.2\junit-platform-suite-engine-1.8.2.jar;C:\Users\zicro\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.8.2\junit-platform-suite-commons-1.8.2.jar;C:\Users\zicro\.m2\repository\org\junit\platform\junit-platform-launcher\1.8.2\junit-platform-launcher-1.8.2.jar;C:\Users\zicro\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\zicro\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\zicro\.m2\repository\com\alexmerz\graphviz\dot-parser\1.0\dot-parser-1.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\zicro\AppData\Local\Temp\surefire18423677492772236779\surefirebooter11060304116968672431.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\zicro\AppData\Local\Temp\surefire8247604086852422475\surefirebooter7456735808698019118.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="22.0.2+9-70"/>
@@ -58,8 +58,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="66.0"/>
   </properties>
-  <testcase name="testHandleAmbiguitySingleMatch" classname="edu.uob.InvertedMatcherTest" time="0.001"/>
+  <testcase name="testHandleAmbiguitySingleMatch" classname="edu.uob.InvertedMatcherTest" time="0"/>
   <testcase name="testFindMatches" classname="edu.uob.InvertedMatcherTest" time="0.001"/>
   <testcase name="testHandleAmbiguityNoMatches" classname="edu.uob.InvertedMatcherTest" time="0.001"/>
-  <testcase name="testHandleAmbiguityMultipleMatches" classname="edu.uob.InvertedMatcherTest" time="0.001"/>
+  <testcase name="testHandleAmbiguityMultipleMatches" classname="edu.uob.InvertedMatcherTest" time="0"/>
 </testsuite>
