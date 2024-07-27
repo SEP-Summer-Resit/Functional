@@ -1,20 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package edu.uob;
 
-/**
- *
- * @author liumu
- */
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.uob.Character;
 
-class Location extends Entity {
+/**
+ * Represents a location in the game, which can contain characters, furniture, artefacts, and paths.
+ * A location has a name and description inherited from the Entity class.
+ */
+public class Location extends Entity {
     private final List<Character> characters;
     private final List<Furniture> furniture;
     private final List<Artefact> artefacts;
@@ -36,22 +31,47 @@ class Location extends Entity {
         return paths;
     }
 
-    public Location(String Name, String description) {
-        super(Name, description);
+    public Location(String name, String description) {
+        super(name, description);
         this.artefacts = new ArrayList<>();
         this.paths = new ArrayList<>();
         this.furniture = new ArrayList<>();
         this.characters = new ArrayList<>();
     }
 
-    public void addFurniture(Furniture furniture) { this.furniture.add(furniture); }
+    /**
+     * Adds a piece of furniture to the location.
+     * 
+     * @param furniture The furniture to add.
+     */
+    public void addFurniture(Furniture furniture) { 
+        this.furniture.add(furniture); 
+    }
 
-    public void addCharacter(Character character) { this.characters.add(character); }
+    /**
+     * Adds a character to the location.
+     * 
+     * @param character The character to add.
+     */
+    public void addCharacter(Character character) { 
+        this.characters.add(character); 
+    }
 
+    /**
+     * Adds an artefact to the location.
+     * 
+     * @param artefact The artefact to add.
+     */
     public void addArtefact(Artefact artefact) {
         this.artefacts.add(artefact);
     }
 
+    /**
+     * Removes an artefact from the location by name.
+     * 
+     * @param artefactName The name of the artefact to remove.
+     * @return The removed artefact, or null if no artefact with the given name was found.
+     */
     public Artefact removeArtefact(String artefactName) {
         for (Artefact artefact : artefacts) {
             if (artefact.getName().equalsIgnoreCase(artefactName)) {
@@ -62,6 +82,12 @@ class Location extends Entity {
         return null;
     }
 
+    /**
+     * Checks if a path exists to a given destination.
+     * 
+     * @param destination The destination location to check.
+     * @return True if a path exists to the destination, false otherwise.
+     */
     public boolean pathExists(Location destination) {
         for (Path path : paths) {
             if (path.getEnd().equals(destination)) {
@@ -71,7 +97,44 @@ class Location extends Entity {
         return false;
     }
 
+    /**
+     * Creates a path to a given destination location.
+     * 
+     * @param destination The destination location to create a path to.
+     */
     public void createPath(Location destination){
         paths.add(new Path(destination));
+    }
+
+    /**
+     * Transfers an artefact from the storeroom to this location.
+     * 
+     * @param storeroom The storeroom location.
+     * @param artefactName The name of the artefact to transfer.
+     * @return True if the artefact was successfully transferred, false otherwise.
+     */
+    public boolean transferFromStoreroom(Location storeroom, String artefactName) {
+        Artefact artefact = storeroom.removeArtefact(artefactName);
+        if (artefact != null) {
+            this.addArtefact(artefact);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Transfers an artefact from this location to the storeroom.
+     * 
+     * @param storeroom The storeroom location.
+     * @param artefactName The name of the artefact to transfer.
+     * @return True if the artefact was successfully transferred, false otherwise.
+     */
+    public boolean transferToStoreroom(Location storeroom, String artefactName) {
+        Artefact artefact = this.removeArtefact(artefactName);
+        if (artefact != null) {
+            storeroom.addArtefact(artefact);
+            return true;
+        }
+        return false;
     }
 }
