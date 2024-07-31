@@ -4,8 +4,9 @@ import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Ignore;
+//import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.alexmerz.graphviz.ParseException;
@@ -125,7 +126,7 @@ final class CommandTests {
     assertTrue(response4.contains("The command format seems off. Please use the correct format. Example: 'get sword', 'goto forest'."));
   }
 
-  @Ignore
+  @Disabled
   @Test
   void testResetCommand() throws FileNotFoundException, ParseException {
     // Setup:
