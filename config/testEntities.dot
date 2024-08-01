@@ -1,0 +1,83 @@
+digraph layout {
+    splines = ortho;
+    graph [ranksep="1" nodesep="1"];
+    node [shape = "rect"];
+
+    subgraph locations {
+
+        subgraph cluster001 {
+            node [shape = "none"];
+            testLoc1 [description = "Test Location"];
+            subgraph artefacts {
+                node [shape = "diamond"];
+                testArte1 [description = "Test Artefact"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                testFurn1 [description = "Test Furniture"];
+            }
+            subgraph characters {
+                node [shape = "ellipse"];
+                testChara1 [description = "Test Character"];
+            }
+        }
+
+        subgraph cluster002 {
+            node [shape = "none"];
+            testLoc2 [description = "Test Location"];
+            subgraph artefacts {
+                node [shape = "diamond"];
+                testArte2 [description = "Test Artefact"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                testFurn2 [description = "Test Furniture"];
+            }
+            subgraph characters {
+                node [shape = "ellipse"];
+                testChara2 [description = "Test Character"];
+            }
+        }
+
+        subgraph cluster003 {
+            node [shape = "none"];
+            testLoc3 [description = "Test Location"];
+            subgraph artefacts {
+                node [shape = "diamond"];
+                testArte3 [description = "Test Artefact"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                testFurn3 [description = "Test Furniture"];
+            }
+            subgraph characters {
+                node [shape = "ellipse"];
+                testChara3 [description = "Test Character"];
+            }
+        }
+
+        subgraph cluster999 {
+            node [shape = "none"];
+            Storeroom [description = "Storage for any entities not placed in the game"]
+            subgraph characters {
+                node [shape = "ellipse"];
+                testChara4 [description = "Test Character"];
+            }
+            subgraph artefacts {
+                node [shape = "diamond"];
+                testArte4 [description = "Test Artefact"];
+            }
+            subgraph furniture {
+                node [shape = "hexagon"];
+                testFurn4 [description = "Test Furniture"];
+            }
+        }
+    }
+
+    subgraph paths {
+        testLoc1 -> testLoc2
+        testLoc2 -> testLoc1
+        testLoc2 -> testLoc3
+        testLoc3 -> testLoc2
+    }
+}
